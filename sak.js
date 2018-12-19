@@ -1,7 +1,12 @@
-let colorsHash = [];
+
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
-colorsHash["255000000"] = "red";
+
+
+
+
+
+
 
 function draw() {
 
@@ -14,6 +19,15 @@ function draw() {
   ctx.fillStyle = '#00FF00';
   ctx.fillText('JulQuizen!',650,50);
 
+
+  drawOutline(463,163,602,102);
+  drawquestion(464,164,600,100, "Klicka här för att starta!!!!");
+  
+
+
+
+  //window.requestAnimationFrame(draw);
+
 //
 //
 //
@@ -24,9 +38,49 @@ function draw() {
 
 
 
+/*
+  drawOutline(463,163,602,102);
+  drawquestion(464,164,600,100, "Klicka här för att starta!!!!");
+  drawOutline(622,299,252,77);
+  drawButton(623,300,250,75,"INTE här!");
+  drawOutline(622,399,252,77);
+  drawButton(623,400,250,75,"INTE här!");
+  drawOutline(622,499,252,77);
+  drawButton(623,500,250,75,"INTE här!");
+  */
 
 
 
+
+
+}
+
+
+function drawButton(x, y, sizeX, sizeY, question) {
+  ctx.fillStyle = "black"
+  ctx.fillRect(x,y,sizeX,sizeY);
+  ctx.fillStyle = "green";
+  ctx.fillRect(x,y,sizeX,sizeY);
+  ctx.font = "25px serif";
+  ctx.fillStyle = "black";
+  ctx.fillText(question ,x+10,y+45);
+}
+function drawquestion(x, y, sizeX, sizeY, question) {
+  ctx.fillStyle = "black"
+  ctx.fillRect(x,y,sizeX,sizeY);
+  ctx.fillStyle = "green";
+  ctx.fillRect(x,y,sizeX,sizeY);
+  ctx.font = "30px serif";
+  ctx.fillStyle = "black";
+  ctx.fillText(question ,x+10,y+55);
+}
+function drawOutline(x, y, sizeX, sizeY) {
+  ctx.fillStyle = "black"
+  ctx.fillRect(x,y,sizeX,sizeY);
+}
+
+
+ function drawstuff() {
   ctx.fillStyle = "black"
   ctx.fillRect(463,164,602,102);
   ctx.fillRect(622,299,252,77);
@@ -45,22 +99,36 @@ function draw() {
   ctx.fillText("Här är ett Alternativ!",630,345);
   ctx.fillText("Här är ett Alternativ!",630,445);
   ctx.fillText("Här är ett Alternativ!",630,545);
-
-
-
-
-  window.requestAnimationFrame(draw);
 }
-document.getElementById("canvas").addEventListener("click", function(e) {
-    let pixel = ctx.getImageData(e.x, e.y, 1, 1).data;
-    let color = `rgb(${pixel[0]},${pixel[1]},${pixel[2]})`;
-    let shape = colorsHash[color];
-    if (shape) {
-        console.log('click on: ' + shape);
-    }
-    console.log(e.x, e.y, pixel);
-}, false);
+  
 
 
+canvas.addEventListener('click', (e) => {
+   console.log(e.offsetX,e.offsetY);
+   if
+      (e.offsetY >=164 &&
+    e.offsetY <=264 &&
+    e.offsetX >= 464 &&
+    e.offsetX <= 1063) 
+   {
+    
+    console.log("Nu har Spelet börjat!");
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    
+
+    drawOutline(463,163,602,102);
+    drawquestion(464,164,600,100, "Varför använder tomten äldre AMD processorer?");
+    drawOutline(622,299,252,77);
+    drawButton(623,300,250,75,"prisvärt.");
+    drawOutline(622,399,252,77);
+    drawButton(623,400,250,75,"Bra prestanda.");
+    drawOutline(622,499,252,77);
+    drawButton(623,500,250,75,"Kallt på nordpolen.");
+
+    
+
+
+   }
+});
 
 window.requestAnimationFrame(draw);

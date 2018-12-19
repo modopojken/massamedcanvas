@@ -1,20 +1,29 @@
-let canvas = document.getElementById("spel");
-let ctx = canvas.getContext("2d");
-let imgX = 0;
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 
-function draw(){
+// create circles to draw
+const circles = [
+  {
+    x: 40,
+    y: 40,
+    radius: 10,
+    color: 'rgb(255,0,0)'
+  },
+  {
+    x: 70,
+    y: 70,
+    radius: 10,
+    color: 'rgb(0,255,0)'
+  }
+];
 
-	let fgImg = document.getElementById("fg-gfx");
-
-	ctx.clearRect(0,0,640,480);
-	ctx.drawImage(fgImg, imgX, 0, 640, 480);
-	ctx.drawImage(fgImg, (imgX+640), 0, 640, 480);
-
-	imgX = imgX - 2;
-	if(imgX <= -640) imgX=0;
-
-	window.requestAnimationFrame(draw);
-}
-
-
-window.requestAnimationFrame(draw);
+// draw circles
+circles.forEach(circle => {
+  ctx.beginPath();
+  ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI, false);
+  ctx.fillStyle = circle.color;
+  ctx.fill();
+});
+canvas.addEventListener('click', (e) => {
+   console.log(e.offsetX,e.offsetY);
+});
