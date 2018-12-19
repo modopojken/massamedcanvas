@@ -39,6 +39,7 @@ function draw() {
   ctx.fillRect(623,500,250,75);
   ctx.fillStyle = "red";
   ctx.font = "30px serif";
+  ctx.fillStyle = "black";
   ctx.fillText("Här kommer frågorna att visas!",480,225);
   ctx.font = "25px serif";
   ctx.fillText("Här är ett Alternativ!",630,345);
